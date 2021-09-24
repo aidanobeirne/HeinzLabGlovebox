@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StandardText Name="English (United States)" Default="true">
+  <Text key="Empty" value=""/>
+  <Text key="ConnectRibbonButton" value="Connect"/>
+  <Text key="DisconnectRibbonButton" value="Disconnect"/>
+  <Text key="HelpRibbonButton" value="Help"/>
+  <Text key="SettingRibbonButton" value="Options"/>
+  <Text key="SupportRibbonButton" value="Support"/>
+  <Text key="UpdateRibbonButton" value="Update"/>
+  <Text key="Settings" value="Settings"/>
+  <Text key="Miscellaneous" value="Miscellaneous"/>
+  <Text key="About" value="About"/>
+  <Text key="File" value="File"/>
+  <Text key="Options" value="Options"/>
+  <Text key="Language" value="Language"/>
+  <Text key="Theme" value="Theme"/>
+  <Text key="Dark" value="Dark"/>
+  <Text key="Light" value="Light"/>
+  <Text key="SelectDeviceWindowTitle" value="Select a device to connect"/>
+  <Text key="SN" value="SN"/>
+  <Text key="FriendlyName" value="FriendlyName"/>
+  <Text key="Description" value="Description"/>
+  <Text key="Connection" value="Connection"/>
+  <Text key="ConnectFailed" value="Connect Failed!"/>
+  <Text key="ConnectLost" value="Connection lost, please check it!"/>
+  <Text key="Refresh" value="Refresh"/>
+  <Text key="OK" value="OK"/>
+  <Text key="Cancel" value="Cancel"/>
+  <Text key="Port" value="Port"/>
+  <Text key="Support" value="Support"/>
+  <Text key="LogInfo" value="Log infos"/>
+  <Text key="CopyToClipboard" value="Copy to Clipboard"/>
+  <Text key="SaveToDisk" value="Save to Disk"/>
+  <Text key="SupportWindowDescription1" value="You can contact "/>
+  <Text key="SupportWindowDescription2" value=" for support."/>
+  <Text key="Update" value="Update"/>
+  <Text key="Download" value="Download Update"/>
+  <Text key="DownloadError" value="Unable to download update file from server"/>
+  <Text key="DownloadCompleted" value="Download completed"/>
+  <Text key="CheckForUpdate" value="Check for Update"/>
+  <Text key="CurrentVersion" value="Installed Version: "/>
+  <Text key="LastestVersion" value="Lastest Version: "/>
+  <Text key="ForMoreInfomation" value="For more information, please visit our "/>
+  <Text key="SoftwareWebpage" value="Software Webpage"/> 
+  <Text key="NoNeedToUpdate" value="Your software is up to date"/>
+  <Text key="ServerUnavailable" value="Can't connect to server"/>
+  <Text key="NoSoftwareAvailable" value="No software available"/>
+  <Text key="CanUpdate" value="New version is available"/> 
+  <Text key="ParsingError" value="Parsing error"/>
+  <Text key="Help" value="Help"/>
+  <Text key="Version" value="Version"/>
+  <Text key="Manual" value="Manual"/>
+  <Text key="SeeTheManual" value="See the Manual"/>
+  <Text key="ViewCPPSDK" value="View C++ SDK"/>
+  <Text key="ViewLabViewSDK" value="View LabVIEW SDK"/>
+  <Text key="ViewPythonSDK" value="View Python SDK"/>
+  <Text key="License" value="License"/>
+  <Text key="ViewLicense" value="View the license documentation"/>
+  <Text key="ViewDetailInfo" value="View more detailed information"/>
+  <Text key="Save" value="Save"/>
+  <Text key="Load" value="Load"/>  
+  <Text key="SaveProfileSucceeded" value="Save the profile successfully!"/>
+  <Text key="SaveProfileFailed" value="Failed to save the profile!"/>
+  <Text key="LoadProfileSucceeded" value="Load the profile successfully!"/>
+  <Text key="LoadProfileFailed" value="Failed to load the profile!"/>
+  <Text key="DeviceNotMatch" value="Profile does not match current device"/>
+
+  <Text key="LanguageChanged" value="Change language successfully!"/>
+
+  <Text key="DeviceStatusNormal" value="Normal"/>
+  <Text key="DeviceStatusWarning" value="Warning"/>
+  <Text key="DeviceStatusError" value="Error"/>
+
+  <Text key="Alert" value="Alert"/>
+
+  <Text key="Previous" value="Previous"/>
+  <Text key="Next" value="Next"/>
+  <Text key="Add" value="Add Step"/>
+  <Text key="Remove" value="Remove Step"/>
+  <Text key="Clear" value="Clear Sequence"/>
+  <Text key="Play" value="Start Sequence"/>
+  <Text key="Stop" value="Stop Sequence"/>
+  <Text key="Infinite" value="Infinite"/>
+  <Text key="Iteration" value="Iterations"/>
+
+  <Text key="SpeedMode" value="Speed Mode"/>
+  <Text key="SlowSpeed" value="Slow"/>
+  <Text key="HighSpeed" value="Fast"/>
+
+  <Text key="TriggerMode" value="External Trigger Mode"/>
+  <Text key="Input" value="Input"/>
+  <Text key="InputToolTip" value="Respond to an active low pulse by advancing position by 1"/>
+  <Text key="Output" value="Output"/>
+  <Text key="OutputToolTip" value="Generate an active high pulse when selected position arrived at"/>
+
+  <Text key="SensorMode" value="Sensor Mode"/>
+  <Text key="TurnOn" value="Turn On"/>
+  <Text key="TurnOnToolTip" value="Sensors remain active"/>
+  <Text key="TurnOff" value="Turn Off"/>
+  <Text key="TurnOffToolTip" value="Sensors turn off when wheel is idle to eliminate stray light"/>
+
+  <Text key="FilterName" value="Filter Name"/>
+  <Text key="FilterConfig" value="Filter Name Configuration"/>
+  <Text key="Position" value="Position"/>
+  <Text key="SaveSettings" value="Save all the settings as default on power up"/>
+  <Text key="SaveSettingsSuccessed" value="Save current settings successfully!"/>
+  <Text key="SaveSettingsFailed" value="Save current settings failed!"/>
+
+  <Text key="Step" value="Step"/>
+  <Text key="Delay" value="Delay(s)"/>
+
+  <Text key="ImportFailed" value="Import sequence failed!"/>
+  <Text key="ImportSucceeded" value="Import sequence successfully!"/>
+  <Text key="ExportFailed" value="Export sequence failed!"/>
+  <Text key="ExportSucceeded" value="Export sequence successfully!"/>
+  <Text key="Import" value="Import"/>
+  <Text key="Export" value="Export"/>
+
+  <Text key="ApplyToAll" value="Apply to all"/>
+  
+  <Text key="MoveFilter" value="Move filter to position" />
+  <Text key="Failed" value="failed!"/>
+  <Text key="InitDevice" value="Initlize device"/>
+</StandardText>

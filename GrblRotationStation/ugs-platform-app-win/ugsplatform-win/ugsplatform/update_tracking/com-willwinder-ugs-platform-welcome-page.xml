@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="com.willwinder.ugs.platform.welcome.page">
+    <module_version install_time="1606936302677" last="true" origin="installer" specification_version="2.0.7.2020.12.02.19.08">
+        <file crc="1031808861" name="config/Modules/com-willwinder-ugs-platform-welcome-page.xml"/>
+        <file crc="1935718322" name="modules/com-willwinder-ugs-platform-welcome-page.jar"/>
+    </module_version>
+</module>

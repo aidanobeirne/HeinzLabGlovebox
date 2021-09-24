@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Plugin DeviceName="FWxC"
+        Assembly="Thorlabs.FW102C.Plugin"
+        ConfigurationFile="FWxC.exe.config"
+        IconFile="FW102C.ico" 
+        Width="640" Height="360"
+       	MinWidth="640" MinHeight="360"
+       	AllowResize="true"
+        />

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="com.willwinder.ugs.platform.gcode.editor">
+    <module_version install_time="1606936301473" last="true" origin="installer" specification_version="2.0.7.2020.12.02.19.08">
+        <file crc="1010629841" name="config/Modules/com-willwinder-ugs-platform-gcode-editor.xml"/>
+        <file crc="2669717224" name="modules/com-willwinder-ugs-platform-gcode-editor.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="com.willwinder.ProbeModule">
+    <module_version install_time="1582825875934" last="true" origin="installer" specification_version="2.0.0.2020.02.27.17.48">
+        <file crc="1833224848" name="config/Modules/com-willwinder-ProbeModule.xml"/>
+        <file crc="675877629" name="modules/com-willwinder-ProbeModule.jar"/>
+        <file crc="1816636622" name="update_tracking/com-willwinder-ProbeModule.xml"/>
+    </module_version>
+</module>

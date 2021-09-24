@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.editor.util/1">
+    <module_version install_time="1606936300960" last="true" origin="installer" specification_version="1.73">
+        <file crc="1365010955" name="config/Modules/org-netbeans-modules-editor-util.xml"/>
+        <file crc="3338694530" name="modules/org-netbeans-modules-editor-util.jar"/>
+    </module_version>
+</module>

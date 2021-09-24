@@ -1,0 +1,4 @@
+org.glassfish.jersey.jackson.internal.JacksonAutoDiscoverable
+org.glassfish.jersey.logging.LoggingFeatureAutoDiscoverable
+org.glassfish.jersey.internal.config.ExternalPropertiesAutoDiscoverable
+org.glassfish.jersey.server.filter.internal.ServerFiltersAutoDiscoverable
