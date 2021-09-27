@@ -809,6 +809,7 @@ class GloveBoxSetupWindow(QMainWindow):
         self.RasterAndSaveAllScanButton.setEnabled(False)
         
         while Scanning:
+            
             ProgressCounter = ProgressCounter + 1
             progress = ProgressCounter/RoughEstimateOfPoints
             
