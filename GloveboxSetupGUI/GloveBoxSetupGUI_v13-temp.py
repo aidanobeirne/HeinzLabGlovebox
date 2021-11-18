@@ -108,18 +108,22 @@ class GloveBoxSetupWindow(QMainWindow):
             return
           
         self.Controller.doEvents()
-        imageWL = []
-        image = []
-        if self.WhiteLightBlueLightSliderComboBox.currentIndex() == 2: 
-            if self.MedianEnableBlur.isChecked():
-                image = cv2.medianBlur(self.Camera.getImageAsNumpyArray().T,5)      
-            else:
-                image = self.Camera.getImageAsNumpyArray().T
-                
-            if self.GaussianEnableBlur.isChecked():
-                image = cv2.GaussianBlur(image,(5,5),0)
+        
+        if self.Scanning == True:
+            pass
         else:
-            imageWL = np.flip(self.WhiteLightCamera.getImageAsNumpyArray().transpose(1,0,2),0) 
+            imageWL = []
+            image = []
+            if self.WhiteLightBlueLightSliderComboBox.currentIndex() == 2: 
+                if self.MedianEnableBlur.isChecked():
+                    image = cv2.medianBlur(self.Camera.getImageAsNumpyArray().T,5)      
+                else:
+                    image = self.Camera.getImageAsNumpyArray().T
+                    
+                if self.GaussianEnableBlur.isChecked():
+                    image = cv2.GaussianBlur(image,(5,5),0)
+            else:
+                imageWL = np.flip(self.WhiteLightCamera.getImageAsNumpyArray().transpose(1,0,2),0) 
         
         if not self.XYSpeed.isSliderDown():
             self.XYSpeed.setValue(self.SpeedModifier)
@@ -157,7 +161,6 @@ class GloveBoxSetupWindow(QMainWindow):
                 #self.ImageView.setImage(image, autoLevels=False, levels=(self.MonoScaleMin.value(), self.MonoScaleMax.value()), autoRange = False, autoHistogramRange=False)
                 self.ImageView.setImage(image, autoLevels=False, levels=(self.MonoScaleMin.value(), self.MonoScaleMax.value()), autoRange = False, autoHistogramRange=False, pos = (0*XPos*1e-3, 0*YPos*1e-3), scale=(self.calibrationFactor, self.calibrationFactor))
 
-                
                 if self.ROIColorCheckEnabled.isChecked():
                     if self.isImageInteresting(image, enableSelectedFilters=True):
                         self.ROI.setPen((0,255,0))
@@ -281,7 +284,6 @@ class GloveBoxSetupWindow(QMainWindow):
         blank_mask = cv2.inRange(self.blank, (lower_bound), (256))
         self.blank_hist = cv2.calcHist([self.blank], [0], blank_mask, [256], [0, 256])
         
-
         plt.figure()
         plt.imshow(self.blank)
         plt.title('Blank Image')
@@ -637,7 +639,7 @@ class GloveBoxSetupWindow(QMainWindow):
             time.sleep(2)
             self.update()
             QApplication.processEvents()
-        Scanning = True
+        self.Scanning = True
         print("Getting exposure time...")
         wait = self.Camera.getExposureTime()
         print(wait)
@@ -656,7 +658,7 @@ class GloveBoxSetupWindow(QMainWindow):
         # self.Camera.startImageAcquisition()
         # print('trigger mode set')
         
-        while Scanning:
+        while self.Scanning:
             ProgressCounter = ProgressCounter + 1
             progress = ProgressCounter/RoughEstimateOfPoints
             
@@ -670,7 +672,7 @@ class GloveBoxSetupWindow(QMainWindow):
                 QApplication.processEvents()
                 
                 if self.stopRunningScan.isChecked():
-                    Scanning = False
+                    self.Scanning = False
                     break
                 self.update()
                 
@@ -731,7 +733,7 @@ class GloveBoxSetupWindow(QMainWindow):
                 self.currentDirection *= -1
                 
             if self.currentPosition.y() >= self.EdgePoints2DScan[1].y():
-                Scanning = False
+                self.Scanning = False
                     
             # QApplication.processEvents()
         
@@ -788,7 +790,7 @@ class GloveBoxSetupWindow(QMainWindow):
         self.pauseRunningScan.setChecked(False)
         self.pauseRunningScan.show()
         
-        Scanning = True
+        self.Scanning = True
         
         print("Getting exposure time...")
         if self.WhiteLightBlueLightSliderComboBox.currentIndex() == 2:
@@ -810,7 +812,7 @@ class GloveBoxSetupWindow(QMainWindow):
         
         self.RasterAndSaveAllScanButton.setEnabled(False)
         
-        while Scanning:
+        while self.Scanning:
             ProgressCounter = ProgressCounter + 1
             progress = ProgressCounter/RoughEstimateOfPoints
             
@@ -824,7 +826,7 @@ class GloveBoxSetupWindow(QMainWindow):
                 QApplication.processEvents()
                 an
                 if self.stopRunningScan.isChecked():
-                    Scanning = False
+                    self.Scanning = False
                     break
                 self.update()
 
@@ -883,7 +885,7 @@ class GloveBoxSetupWindow(QMainWindow):
                 self.currentDirection *= -1
                 
             if self.currentPosition.y() >= self.EdgePoints2DScan[1].y():
-                Scanning = False
+                self.Scanning = False
 
         print('Scan complete')
         self.stopRunningScan.hide()
@@ -976,6 +978,7 @@ class GloveBoxSetupWindow(QMainWindow):
         self.counter= 0
         self.RCBImg = np.asarray(Image.open(r'C:\Users\GloveBox\Documents\Python Scripts\RCB\RCB.png'))
         self.RCBImg = self.RCBImg[::7,::7,:]
+        self.Scanning = False
         
         self.NeedsAutoRange = True
         self.outlier_n = 7
@@ -1009,7 +1012,7 @@ class GloveBoxSetupWindow(QMainWindow):
         StartGUI.Progress.setValue(20)
         StartGUI.update()
         QApplication.processEvents()
-        self.Shutter = ThorlabsStages.LaserShutter()
+        #self.Shutter = ThorlabsStages.LaserShutter()
         StartGUI.Progress.setValue(30)
         StartGUI.update()
         QApplication.processEvents()
