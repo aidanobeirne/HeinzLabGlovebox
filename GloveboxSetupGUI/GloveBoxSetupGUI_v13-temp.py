@@ -29,7 +29,6 @@ sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\ThorlabsCamera')
 sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\ICMeasureCamera')
 sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\MCMStage')
 sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\GrblRotationStation')
-#sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\ArduinoController')
 sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\ElliptecMotor')
 sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\Andor')
 sys.path.append(r'C:\Users\GloveBox\Documents\Python Scripts\PLMapGUI')
@@ -48,8 +47,6 @@ import glob
 import ThorlabsStages
 import MCMStage
 import PS4Controller
-#import ArduinoController
-#import Grasshopper3Cam
 from matplotlib.image import imread
 import matplotlib
 from PIL import ImageTk, Image
@@ -221,39 +218,7 @@ class GloveBoxSetupWindow(QMainWindow):
             # # self.WLExposureSpinbox.editingFinished.connect(lambda : self.WhiteLightCamera.setExposureTime(self.WLExposureSpinbox.value()))
             # # self.PLExposureSpinbox.editingFinished.connect(lambda : self.Camera.setExposureTime(self.PLExposureSpinbox.value()))
         
-##################### Old function ##################################
-    # def isImageInteresting(self, CurrentImage, enableSelectedFilters=True):
-    #     image = CurrentImage
-    #     if enableSelectedFilters:
-    #         if self.MedianEnableBlur.isChecked():
-    #             image = cv2.medianBlur(image,5)         
-    #         if self.GaussianEnableBlur.isChecked():
-    #             image = cv2.GaussianBlur(image,(5,5),0)  
-    #     p = self.ROI.pos()
-    #     s = self.ROI.size()
-        
-         
-    #     S = np.shape(image)
-    #     ImageSize = (S[0]*self.calibrationFactor, S[0]*self.calibrationFactor)
-    #     for i in (0,1):
-    #         if p[i] < 0:
-    #             p[i] = 0
-    #         if p[i]+s[i] > ImageSize[i]:
-    #             s[i] = ImageSize[i] - p[i]
-    #     # print("Corona","p",p,"s",s)
-    #     temp = s
-    #     s = (temp[0]/self.calibrationFactor,temp[1]/self.calibrationFactor) 
-    #     temp = p
-    #     p = (temp[0]/self.calibrationFactor,temp[1]/self.calibrationFactor) 
-    #     # print("Mask","p",p,"s",s)
-    #     ROIData = image[int(p[0]):int(p[0]+s[0]),int(p[1]):int(p[1]+s[1])]
-    #     self.ThreadLock.acquire()
-    #     self.savedROIData = ROIData
-    #     self.ThreadLock.release()
-    #     AmountOfInterestingPixels = np.sum(ROIData > self.GrayScaleThresholdLine.value())      
-    #     return AmountOfInterestingPixels > self.InterestingnessThresholdLine.value() 
-###################################################################
-####################### New function ###############################
+
 
     def set_blank_image(self):
         image = self.Camera.getImageAsNumpyArray().T
@@ -1286,7 +1251,7 @@ class GloveBoxSetupWindow(QMainWindow):
         # grid_layout.addWidget(self.horizontalGroupBox, 0, 1)
         # grid_layout.setRowStretch(1,0)
         
-        # ArduinoControlDock.addWidget(ArduinoControl)
+
         
         #--------------------------------------------------------------------------------------------------------
         # Scan Groupbox
@@ -2225,7 +2190,6 @@ class GloveBoxSetupWindow(QMainWindow):
     def DecreaseObjective(self):
         if '10x' not in self.ObjectiveComboBox.currentText():
             print('Decreasing Objective (overshooting for backlash)')
-            # self.Arduino.moveRelativemm('Y', -1.03)
             self.ObjectiveComboBox.setCurrentIndex(self.ObjectiveComboBox.currentIndex()-1)
             time.sleep(0.5)
         else:
@@ -2294,8 +2258,12 @@ class GloveBoxSetupWindow(QMainWindow):
 
     def SelectSlider(self, idx):
         target = self.WhiteLightBlueLightSliderComboBox.currentText()
-        print(target)
-        self.Arduino.moveAbsolutemm('X', self.Arduino.Xpresetpositions[str(target)])
+
+        # self.Arduino.moveAbsolutemm('X', self.Arduino.Xpresetpositions[str(target)])
+        
+        ###
+        # INSERT PA motor code here
+        ###
         if idx == 0: 
              self.Camera.endImageAcquisition()#
              self.WhiteLightCamera.startImageAcquisition()   
@@ -2785,9 +2753,7 @@ class GloveBoxSetupWindow(QMainWindow):
         
     def resetSliderandComboboxes(self):
         self.Arduino.reset()
-        self.WhiteLightBlueLightSliderComboBox.setCurrentIndex(0)
         self.ObjectiveComboBox.setCurrentIndex(0)
-
 
     def PLMapisPointWithinPolygon(self, point):
         
