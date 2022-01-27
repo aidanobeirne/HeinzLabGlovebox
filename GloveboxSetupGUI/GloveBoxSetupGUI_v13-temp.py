@@ -52,6 +52,7 @@ import matplotlib
 from PIL import ImageTk, Image
 
 import ArduinoRotationStage
+import PA_arduino
 import AdvancedSpectrometerWidget
 import PLMapGUI
 import SpecPlotGUIElement
@@ -454,7 +455,7 @@ class GloveBoxSetupWindow(QMainWindow):
         print('Closing Filter Wheel')
         self.filterwheel.SetPosition(1)
         self.filterwheel.close()
-        time.sleep(3)
+        time.sleep(0.5)
         
         StopGUI.Progress.setValue(35)
         StopGUI.update()
@@ -970,6 +971,7 @@ class GloveBoxSetupWindow(QMainWindow):
         
         self.Stage = ThorlabsStages.Thorlabs2DStageKinesis(SN_motor = '73126054')
         print('2D Stage initialized, Starting up Z piezo')
+        
         StartGUI.Progress.setValue(10)
         StartGUI.update()
         QApplication.processEvents()
@@ -977,12 +979,13 @@ class GloveBoxSetupWindow(QMainWindow):
         StartGUI.Progress.setValue(20)
         StartGUI.update()
         QApplication.processEvents()
-        #self.Shutter = ThorlabsStages.LaserShutter()
+        self.Shutter = ThorlabsStages.LaserShutter()
         StartGUI.Progress.setValue(30)
         StartGUI.update()
         QApplication.processEvents()
         print('Piezo initialized')
         self.Arduino = ArduinoRotationStage.ArduinoRotationStage()
+        self.PA_Arduino = PA_arduino.PA_Arduino()
         time.sleep(0.5)
         StartGUI.Progress.setValue(40)
         StartGUI.update()
@@ -1687,10 +1690,12 @@ class GloveBoxSetupWindow(QMainWindow):
         
         self.FilterComboBox = QComboBox()
         self.FilterComboBox.addItem('LP 600 nm')
-        self.FilterComboBox.addItem('BP 750 ± 40 nm')
-        self.FilterComboBox.addItem('BP 750 ± 10 nm')
-        self.FilterComboBox.addItem('BP 730 ± 10 nm')
-        self.FilterComboBox.addItem('empty')
+        self.FilterComboBox.addItem('BP 750 ± 20 nm')
+        self.FilterComboBox.addItem('BP 790 ± 5 nm')
+        self.FilterComboBox.addItem('BP 800 ± 5 nm')
+        self.FilterComboBox.addItem('empty') #keep this one the fourth (start indexing at 0)
+        self.FilterComboBox.addItem('BP 800 ± 5 nm')
+        
         self.FilterComboBox.currentIndexChanged.connect(lambda idx: self.SelectFilter(idx))
         CameraSetting.addWidget(self.FilterComboBox, 10, 1, 1, 1)
         
@@ -1708,9 +1713,9 @@ class GloveBoxSetupWindow(QMainWindow):
         self.ShutterLabel = QLabel('Laser Shutter:')
         CameraSetting.addWidget(self.ShutterLabel, 11, 0, 1, 1)
         
-        # btn = QPushButton('Shutter')
-        # btn.clicked.connect(self.ChangeShutter)
-        # layout.addWidget(btn, 13, 1, 1, 1)
+        btn = QPushButton('Shutter')
+        btn.clicked.connect(self.ChangeShutter)
+  #      layout.addWidget(btn, 13, 1, 1, 1)
         self.ShutterComboBox = QComboBox()
         self.ShutterComboBox.addItem("Open")
         self.ShutterComboBox.addItem("Closed")
@@ -1737,8 +1742,8 @@ class GloveBoxSetupWindow(QMainWindow):
         # Misc Groupbox
         #--------------------------------------------------------------------------------------------------------
         
-        # self.MiscGroupBox = QGroupBox("Misc")
-        # layout = QGridLayout()
+ #       self.MiscGroupBox = QGroupBox("Misc")
+#        layout = QGridLayout()
         Misc = pg.LayoutWidget()
 
         btn = QPushButton('Show/Hide Position list')
@@ -2257,13 +2262,19 @@ class GloveBoxSetupWindow(QMainWindow):
 
 
     def SelectSlider(self, idx):
-        target = self.WhiteLightBlueLightSliderComboBox.currentText()
-
+        # target = self.WhiteLightBlueLightSliderComboBox.currentText()
         # self.Arduino.moveAbsolutemm('X', self.Arduino.Xpresetpositions[str(target)])
-        
         ###
         # INSERT PA motor code here
+        if idx==0:
+            new_pos = 'WL'
+        elif idx==1:
+            new_pos = 'Empty'
+        elif idx==2:
+            new_pos = 'BL'
+        self.PA_Arduino.moveTo(new_pos)
         ###
+        
         if idx == 0: 
              self.Camera.endImageAcquisition()#
              self.WhiteLightCamera.startImageAcquisition()   
